@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>BLAST Results</title>
+</head>
+<body>
+    <h1>BLAST Results</h1>
+    <div th:if="${error}" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
+    <div th:unless="${error}">
+        <pre th:text="${blastOutput}"></pre>
+    </div>
+    <a href="/blast">Back to BLAST Search</a>
+</body>
+</html>

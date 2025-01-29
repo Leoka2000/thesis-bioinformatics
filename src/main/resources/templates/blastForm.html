@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>BLAST Search</title>
+</head>
+<body>
+    <h1>BLAST Search</h1>
+    <form action="/blast" method="post">
+        <label for="sequence">Enter Sequence:</label>
+        <input type="text" id="sequence" name="sequence" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
