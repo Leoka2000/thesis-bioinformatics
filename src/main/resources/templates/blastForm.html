@@ -9,6 +9,7 @@
             max-width: 200px; 
             margin: 50px auto;
             padding: 20px;
+           
         }
         .title {
             text-align: center;
@@ -17,44 +18,13 @@
         .history-table {
             margin-top: 40px;
         }
-        .logoImg {
-            filter: invert(100%) sepia(1%) saturate(1%) hue-rotate(0) brightness(1209%) contrast(300%);
-            height: 42px
-        }
+       
+        
+        
     </style>
 </head>
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="https://leoreusportfolio.netlify.app/">
-      
-                    <img src="logo.png" alt="App Logo" width="50" class="logoImg">
-         
-            </a>
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item">Home</a>
-                <a class="navbar-item">Documentation</a>
-               
-            </div>
-
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <button id="themeToggle" class="button has-shadow is-size-5 ">🌙☀️</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <div th:replace="fragments/navbar :: body"></div>
 
     <div class="container">
         <h1 class="title">BLAST Search</h1>
@@ -63,50 +33,21 @@
                 <label class="label" for="sequence">Enter Sequence:</label>
                 <div class="control">
                     <!-- Bulma input field -->
-                    <input class="input is-link" type="text" id="sequence" name="sequence" placeholder="e.g., NP_594959.1" required />
+                    <input class="input is-dark is-primary" type="text" id="sequence" name="sequence" placeholder="e.g., NP_594959.1" required />
                 </div>
             </div>
             <div class="field">
                 <div class="control">
                     <!-- Submit button (replaced by loading button during BLAST) -->
-                    <button id="submitButton" class="button is-dark is-link" type="submit">Submit</button>
+                    <button id="submitButton" class="button is-dark is-primary" type="submit">Submit</button>
                     <!-- Loading button (hidden by default) -->
-                    <button id="loadingButton" class="button is-link is-dark is-loading" type="button" style="display: none;">Loading</button>
+                    <button id="loadingButton" class="button is-primary is-dark is-loading" type="button" style="display: none;">Loading</button>
                     <span id="timer" class="timer" style="display: none;">Time since submission: <span id="timeElapsed">0</span>s</span>
                 </div>
             </div>
         </form>
 
-        <!-- History of Past BLAST Searches -->
-        <div class="history-table">
-            <h2 class="subtitle">History of Past BLAST Searches</h2>
-            <table class="table is-bordered is-striped is-hoverable is-fullwidth">
-                <thead>
-                    <tr>
-                        <th>Sequence</th>
-                        <th>Hit ID</th>
-                        <th>Definition</th>
-                        <th  >Accession<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M137.4 41.4c12.5-12.5 32.8-12.5 45.3 0l128 128c9.2 9.2 11.9 22.9 6.9 34.9s-16.6 19.8-29.6 19.8L32 224c-12.9 0-24.6-7.8-29.6-19.8s-2.2-25.7 6.9-34.9l128-128zm0 429.3l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8l256 0c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128c-12.5 12.5-32.8 12.5-45.3 0z"/></svg></th>
-                        <th>Length<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M137.4 41.4c12.5-12.5 32.8-12.5 45.3 0l128 128c9.2 9.2 11.9 22.9 6.9 34.9s-16.6 19.8-29.6 19.8L32 224c-12.9 0-24.6-7.8-29.6-19.8s-2.2-25.7 6.9-34.9l128-128zm0 429.3l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8l256 0c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128c-12.5 12.5-32.8 12.5-45.3 0z"/></svg></th>
-                        <th>Bit Score<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M137.4 41.4c12.5-12.5 32.8-12.5 45.3 0l128 128c9.2 9.2 11.9 22.9 6.9 34.9s-16.6 19.8-29.6 19.8L32 224c-12.9 0-24.6-7.8-29.6-19.8s-2.2-25.7 6.9-34.9l128-128zm0 429.3l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8l256 0c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128c-12.5 12.5-32.8 12.5-45.3 0z"/></svg></th>
-                        <th>E-value<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M137.4 41.4c12.5-12.5 32.8-12.5 45.3 0l128 128c9.2 9.2 11.9 22.9 6.9 34.9s-16.6 19.8-29.6 19.8L32 224c-12.9 0-24.6-7.8-29.6-19.8s-2.2-25.7 6.9-34.9l128-128zm0 429.3l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8l256 0c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128c-12.5 12.5-32.8 12.5-45.3 0z"/></svg></th>
-                        <th>Timestamp<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M137.4 41.4c12.5-12.5 32.8-12.5 45.3 0l128 128c9.2 9.2 11.9 22.9 6.9 34.9s-16.6 19.8-29.6 19.8L32 224c-12.9 0-24.6-7.8-29.6-19.8s-2.2-25.7 6.9-34.9l128-128zm0 429.3l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8l256 0c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128c-12.5 12.5-32.8 12.5-45.3 0z"/></svg></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="result : ${pastResults}">
-                        <td th:text="${result.sequence}"></td>
-                        <td th:text="${result.hitId}"></td>
-                        <td th:text="${result.hitDefinition}"></td>
-                        <td th:text="${result.hitAccession}"></td>
-                        <td th:text="${result.hitLength}"></td>
-                        <td th:text="${result.bitScore}"></td>
-                        <td th:text="${result.evalue}"></td>
-                        <td th:text="${result.timestamp}"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+
     </div>
 
     <script>
@@ -125,27 +66,6 @@
             }
         }
     </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const themeToggleButton = document.getElementById("themeToggle");
-            const htmlElement = document.documentElement;
-            
-            // Set initial icon
-            themeToggleButton.textContent = "🌙";
-            
-            themeToggleButton.addEventListener("click", function () {
-                if (htmlElement.classList.contains("theme-dark")) {
-                    htmlElement.classList.remove("theme-dark");
-                    htmlElement.classList.add("theme-light");
-                    themeToggleButton.textContent = "☀️"; // Change to sun icon
-                } else {
-                    htmlElement.classList.remove("theme-light");
-                    htmlElement.classList.add("theme-dark");
-                    themeToggleButton.textContent = "🌙"; // Change to moon icon
-                }
-            });
-        });
-        
-    </script>
+   
 </body>
 </html>

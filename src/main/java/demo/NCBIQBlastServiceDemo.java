@@ -38,8 +38,8 @@ public class NCBIQBlastServiceDemo {
             rid = service.sendAlignmentRequest(sequence, props);
 
             while (!service.isReady(rid)) {
-                System.out.println("Waiting for results. Sleeping for 2 seconds");
-                Thread.sleep(2000);
+                System.out.println("Waiting for results. Sleeping for 3 seconds");
+                Thread.sleep(3000);
             }
 
             // read results when they are ready

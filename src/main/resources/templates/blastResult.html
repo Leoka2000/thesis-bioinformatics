@@ -28,9 +28,10 @@
     </script>
 </head>
 <body>
+    <div th:replace="fragments/navbar :: body"></div>
     <section class="section">
         <div class="container">
-            <a href="/blast" style="margin-bottom: 0.75rem;" class="button is-link">Back to BLAST Search</a>
+            <a href="/blast" style="margin-bottom: 0.75rem;" class="button is-dark is-primary">Back</a>
             <h1 class="title">BLAST Results</h1>
             <div th:if="${error}" class="notification is-danger">
                 <p th:text="${error}"></p>
@@ -52,16 +53,16 @@
                 <table id="blastResultsTable"  class="table is-bordered is-striped is-hoverable is-fullwidth" data-sort-order="asc">
                     <thead>
                         <tr>
-                            <th onclick="sortTable(0, true)">Hit Number </th>
+                            <th onclick="sortTable(0, true)">Hit Number</th>
                             <th onclick="sortTable(1, false)">Hit ID</th>
-                            <th onclick="sortTable(2, false)">Definition</i></th>
-                            <th onclick="sortTable(3, false)">Accession<i class="fa-solid fa-sort-down"></i></th>
-                            <th onclick="sortTable(4, true)">Lengt<i class="fa-solid fa-sort-down"></i></th>
-                            <th onclick="sortTable(5, true)">Bit Score<i class="fa-solid fa-sort-down"></i></th>
-                            <th onclick="sortTable(6, true)">E-value<i class="fa-solid fa-sort-down"></i></th>
-                            <th onclick="sortTable(7, true)">Identity<i class="fa-solid fa-sort-down"></i></th>
-                            <th onclick="sortTable(8, true)">Positive<i class="fa-solid fa-sort-down"></i></th>
-                            <th onclick="sortTable(9, true)">Gaps<i class="fa-solid fa-sort-down"></i></th>
+                            <th onclick="sortTable(2, false)">Definition</th>
+                            <th style="cursor: pointer;" onclick="sortTable(3, false)">Accession<span style="font-size: 0.75rem; margin-inline-start: 0.25rem;" class="arrow">▼</span></th>
+                            <th style="cursor: pointer;" onclick="sortTable(4, true)">Length<span style="font-size: 0.75rem; margin-inline-start: 0.25rem;" class="arrow">▼</span></th>
+                            <th style="cursor: pointer;" onclick="sortTable(5, true)">Bit Score<span style="font-size: 0.75rem; margin-inline-start: 0.25rem;" class="arrow">▼</span></th>
+                            <th style="cursor: pointer;" onclick="sortTable(6, true)">E-value<span style="font-size: 0.75rem; margin-inline-start: 0.25rem;" class="arrow">▼</span></th>
+                            <th style="cursor: pointer;" onclick="sortTable(7, true)">Identity<span style="font-size: 0.75rem; margin-inline-start: 0.25rem;" class="arrow">▼</span></th>
+                            <th style="cursor: pointer;" onclick="sortTable(8, true)">Positive<span style="font-size: 0.75rem; margin-inline-start: 0.25rem;" class="arrow">▼</span></th>
+                            <th style="cursor: pointer;" onclick="sortTable(9, true)">Gaps<span style="font-size: 0.75rem; margin-inline-start: 0.25rem;" class="arrow">▼</span></th>
                         </tr>
                     </thead>
                     <tbody>
