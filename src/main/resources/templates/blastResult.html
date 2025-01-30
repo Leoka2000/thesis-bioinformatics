@@ -2,15 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>BLAST Results</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
 </head>
 <body>
-    <h1>BLAST Results</h1>
-    <div th:if="${error}" style="color: red;">
-        <p th:text="${error}"></p>
-    </div>
-    <div th:unless="${error}">
-        <pre th:text="${blastOutput}"></pre>
-    </div>
-    <a href="/blast">Back to BLAST Search</a>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">BLAST Results</h1>
+            <div th:if="${error}" class="notification is-danger">
+                <p th:text="${error}"></p>
+            </div>
+            <div th:unless="${error}">
+                <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Hit Number</th>
+                            <th>Hit ID</th>
+                            <th>Definition</th>
+                            <th>Accession</th>
+                            <th>Length</th>
+                            <th>Bit Score</th>
+                            <th>E-value</th>
+                            <th>Identity</th>
+                            <th>Positive</th>
+                            <th>Gaps</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="hit : ${hits}">
+                            <td th:text="${hit.num}"></td>
+                            <td th:text="${hit.id}"></td>
+                            <td th:text="${hit.def}"></td>
+                            <td th:text="${hit.accession}"></td>
+                            <td th:text="${hit.len}"></td>
+                            <td th:text="${hit.bitScore}"></td>
+                            <td th:text="${hit.evalue}"></td>
+                            <td th:text="${hit.identity}"></td>
+                            <td th:text="${hit.positive}"></td>
+                            <td th:text="${hit.gaps}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a href="/blast" class="button is-link">Back to BLAST Search</a>
+        </div>
+    </section>
 </body>
 </html>
