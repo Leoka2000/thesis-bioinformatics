@@ -3,16 +3,39 @@
 <head>
     <title>BLAST Results</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
+    <script>
+        function sortTable(columnIndex, isNumeric) {
+            const table = document.getElementById("blastResultsTable");
+            const tbody = table.getElementsByTagName("tbody")[0];
+            const rows = Array.from(tbody.getElementsByTagName("tr"));
+            
+            let sortOrder = table.getAttribute("data-sort-order") === "asc" ? "desc" : "asc";
+            table.setAttribute("data-sort-order", sortOrder);
+            
+            rows.sort((rowA, rowB) => {
+                let cellA = rowA.getElementsByTagName("td")[columnIndex].innerText.trim();
+                let cellB = rowB.getElementsByTagName("td")[columnIndex].innerText.trim();
+                
+                if (isNumeric) {
+                    return sortOrder === "asc" ? cellA - cellB : cellB - cellA;
+                } else {
+                    return sortOrder === "asc" ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+                }
+            });
+            
+            rows.forEach(row => tbody.appendChild(row)); // Reappend sorted rows
+        }
+    </script>
 </head>
 <body>
     <section class="section">
         <div class="container">
+            <a href="/blast" style="margin-bottom: 0.75rem;" class="button is-link">Back to BLAST Search</a>
             <h1 class="title">BLAST Results</h1>
             <div th:if="${error}" class="notification is-danger">
                 <p th:text="${error}"></p>
             </div>
             <div th:unless="${error}">
-                <!-- Display BLAST output information -->
                 <div class="box">
                     <h2 class="subtitle">BLAST Output Information</h2>
                     <div class="content">
@@ -23,28 +46,22 @@
                         <p><strong>Query ID:</strong> <span th:text="${blastOutputInfo.queryId}"></span></p>
                         <p><strong>Query Definition:</strong> <span th:text="${blastOutputInfo.queryDef}"></span></p>
                         <p><strong>Query Length:</strong> <span th:text="${blastOutputInfo.queryLen}"></span></p>
-                        <p><strong>Matrix:</strong> <span th:text="${blastOutputInfo.matrix}"></span></p>
-                        <p><strong>Expect Value:</strong> <span th:text="${blastOutputInfo.expect}"></span></p>
-                        <p><strong>Gap Open Penalty:</strong> <span th:text="${blastOutputInfo.gapOpen}"></span></p>
-                        <p><strong>Gap Extend Penalty:</strong> <span th:text="${blastOutputInfo.gapExtend}"></span></p>
-                        <p><strong>Filter:</strong> <span th:text="${blastOutputInfo.filter}"></span></p>
                     </div>
                 </div>
 
-                <!-- Display hits in a table -->
-                <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <table id="blastResultsTable"  class="table is-bordered is-striped is-hoverable is-fullwidth" data-sort-order="asc">
                     <thead>
                         <tr>
-                            <th>Hit Number</th>
-                            <th>Hit ID</th>
-                            <th>Definition</th>
-                            <th>Accession</th>
-                            <th>Length</th>
-                            <th>Bit Score</th>
-                            <th>E-value</th>
-                            <th>Identity</th>
-                            <th>Positive</th>
-                            <th>Gaps</th>
+                            <th onclick="sortTable(0, true)">Hit Number </th>
+                            <th onclick="sortTable(1, false)">Hit ID</th>
+                            <th onclick="sortTable(2, false)">Definition</i></th>
+                            <th onclick="sortTable(3, false)">Accession<i class="fa-solid fa-sort-down"></i></th>
+                            <th onclick="sortTable(4, true)">Lengt<i class="fa-solid fa-sort-down"></i></th>
+                            <th onclick="sortTable(5, true)">Bit Score<i class="fa-solid fa-sort-down"></i></th>
+                            <th onclick="sortTable(6, true)">E-value<i class="fa-solid fa-sort-down"></i></th>
+                            <th onclick="sortTable(7, true)">Identity<i class="fa-solid fa-sort-down"></i></th>
+                            <th onclick="sortTable(8, true)">Positive<i class="fa-solid fa-sort-down"></i></th>
+                            <th onclick="sortTable(9, true)">Gaps<i class="fa-solid fa-sort-down"></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,7 +80,6 @@
                     </tbody>
                 </table>
             </div>
-            <a href="/blast" class="button is-link">Back to BLAST Search</a>
         </div>
     </section>
 </body>

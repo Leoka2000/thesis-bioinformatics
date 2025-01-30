@@ -17,11 +17,7 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class BlastController {
@@ -31,7 +27,6 @@ public class BlastController {
 
     @GetMapping("/blast")
     public String blastForm(Model model) {
-        // Retrieve all past BLAST results from the database
         List<BlastResult> pastResults = blastResultRepository.findAll();
         model.addAttribute("pastResults", pastResults);
         return "blastForm";
@@ -40,18 +35,15 @@ public class BlastController {
     @PostMapping("/blast")
     public String blastSubmit(@RequestParam String sequence, Model model) {
         try {
-            // Perform BLAST search
             NCBIQBlastServiceDemo blastService = new NCBIQBlastServiceDemo();
             blastService.setSequence(sequence);
             blastService.performBlast();
 
-            // Parse the BLAST output XML file
             File blastOutputFile = new File(NCBIQBlastServiceDemo.BLAST_OUTPUT_FILE);
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(blastOutputFile);
 
-            // Extract top-level BLAST output information
             Map<String, String> blastOutputInfo = new HashMap<>();
             blastOutputInfo.put("program", getElementValue(document.getDocumentElement(), "BlastOutput_program"));
             blastOutputInfo.put("version", getElementValue(document.getDocumentElement(), "BlastOutput_version"));
@@ -61,9 +53,7 @@ public class BlastController {
             blastOutputInfo.put("queryDef", getElementValue(document.getDocumentElement(), "BlastOutput_query-def"));
             blastOutputInfo.put("queryLen", getElementValue(document.getDocumentElement(), "BlastOutput_query-len"));
 
-            // Extract parameters
-            Element parametersElement = (Element) document.getDocumentElement().getElementsByTagName("Parameters")
-                    .item(0);
+            Element parametersElement = (Element) document.getDocumentElement().getElementsByTagName("Parameters").item(0);
             if (parametersElement != null) {
                 blastOutputInfo.put("matrix", getElementValue(parametersElement, "Parameters_matrix"));
                 blastOutputInfo.put("expect", getElementValue(parametersElement, "Parameters_expect"));
@@ -72,10 +62,8 @@ public class BlastController {
                 blastOutputInfo.put("filter", getElementValue(parametersElement, "Parameters_filter"));
             }
 
-            // Add the BLAST output information to the model
             model.addAttribute("blastOutputInfo", blastOutputInfo);
 
-            // Parse and save the hits
             List<Map<String, String>> hits = parseBlastOutput(blastOutputFile);
             for (Map<String, String> hit : hits) {
                 BlastResult result = new BlastResult();
@@ -93,7 +81,6 @@ public class BlastController {
                 blastResultRepository.save(result);
             }
 
-            // Add the hits to the model
             model.addAttribute("hits", hits);
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
@@ -102,29 +89,17 @@ public class BlastController {
         return "blastResult";
     }
 
-    @GetMapping("/blast/results")
-    public String blastResults(Model model) {
-        // Retrieve all BLAST results from the database
-        List<BlastResult> results = blastResultRepository.findAll();
-        model.addAttribute("hits", results);
-        return "blastResult";
-    }
-
     private List<Map<String, String>> parseBlastOutput(File xmlFile) throws Exception {
         List<Map<String, String>> hits = new ArrayList<>();
-
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(xmlFile);
 
-        // Get all <Hit> elements
         NodeList hitList = document.getElementsByTagName("Hit");
         for (int i = 0; i < hitList.getLength(); i++) {
             Node hitNode = hitList.item(i);
             if (hitNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element hitElement = (Element) hitNode;
-
-                // Extract fields from the <Hit> element
                 Map<String, String> hit = new HashMap<>();
                 hit.put("num", getElementValue(hitElement, "Hit_num"));
                 hit.put("id", getElementValue(hitElement, "Hit_id"));
@@ -132,7 +107,6 @@ public class BlastController {
                 hit.put("accession", getElementValue(hitElement, "Hit_accession"));
                 hit.put("len", getElementValue(hitElement, "Hit_len"));
 
-                // Extract HSP (High-Scoring Pair) data
                 Element hspElement = (Element) hitElement.getElementsByTagName("Hsp").item(0);
                 if (hspElement != null) {
                     hit.put("bitScore", getElementValue(hspElement, "Hsp_bit-score"));
@@ -145,7 +119,6 @@ public class BlastController {
                 hits.add(hit);
             }
         }
-
         return hits;
     }
 
