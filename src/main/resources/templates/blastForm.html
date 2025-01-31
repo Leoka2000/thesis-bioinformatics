@@ -18,9 +18,26 @@
         .history-table {
             margin-top: 40px;
         }
-       
-        
-        
+        .fade {
+            background-image: linear-gradient(
+                180deg, 
+                rgba(15, 219, 128, 0.3), 
+                rgba(11, 189, 108, 0.2), 
+                rgba(8, 159, 88, 0.1), 
+                rgba(6, 127, 68, 0.05), 
+                rgba(4, 95, 48, 0.001), 
+                rgba(0, 0, 0, 0) /* Fully transparent */
+              );
+              height: 20rem;
+              width: 100%;
+              position: absolute;
+              top: 0;
+        }
+        .search-details {
+            margin-top: 20px;
+            display: none;
+        }
+      
     </style>
 </head>
 <body>
@@ -32,69 +49,76 @@
             <div class="field">
                 <label class="label" for="sequence">Enter Sequence:</label>
                 <div class="control">
-                    <!-- Bulma input field -->
                     <input class="input is-dark is-primary" type="text" id="sequence" name="sequence" placeholder="e.g., NP_594959.1" required />
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <!-- Submit button (replaced by loading button during BLAST) -->
                     <button id="submitButton" class="button is-dark is-primary" type="submit">Submit</button>
-                    <!-- Loading button (hidden by default) -->
                     <button id="loadingButton" class="button is-primary is-dark is-loading" type="button" style="display: none;">Loading</button>
                     <span id="timer" class="timer" style="display: none;">Time since submission: <span id="timeElapsed">0</span>s</span>
                 </div>
             </div>
         </form>
 
-
         <div class="history-table">
             <h2 class="subtitle">History of Past BLAST Searches</h2>
-            <table class="table is-bordered is-striped is-hoverable is-fullwidth">
-                <thead>
-                    <tr>
-                        <th>Sequence</th>
-                        <th>Hit ID</th>
-                        <th>Definition</th>
-                        <th >Accession</th>
-                        <th>Length</th>
-                        <th>Bit Score</th>
-                        <th>E-value</th>
-                        <th>Timestamp</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="result : ${pastResults}">
-                        <td th:text="${result.sequence}"></td>
-                        <td th:text="${result.hitId}"></td>
-                        <td th:text="${result.hitDefinition}"></td>
-                        <td th:text="${result.hitAccession}"></td>
-                        <td th:text="${result.hitLength}"></td>
-                        <td th:text="${result.bitScore}"></td>
-                        <td th:text="${result.evalue}"></td>
-                        <td th:text="${result.timestamp}"></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div th:each="search : ${pastSearches}">
+                <div style="cursor: pointer;"  class="box" th:onclick="|showSearchDetails('${search.id}')|">
+                    <strong>Search ID:</strong> <span th:text="${search.id}"></span><br>
+                    <strong>Sequence:</strong> <span th:text="${search.sequence}"></span><br>
+                    <strong>Timestamp:</strong> <span th:text="${search.timestamp}"></span>
+                </div>
+                <div class="search-details" th:id="|details-${search.id}|">
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th>Hit ID</th>
+                                <th>Definition</th>
+                                <th>Accession</th>
+                                <th>Length</th>
+                                <th>Bit Score</th>
+                                <th>E-value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="result : ${search.results}">
+                                <td th:text="${result.hitId}"></td>
+                                <td th:text="${result.hitDefinition}"></td>
+                                <td th:text="${result.hitAccession}"></td>
+                                <td th:text="${result.hitLength}"></td>
+                                <td th:text="${result.bitScore}"></td>
+                                <td th:text="${result.evalue}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Function to show the loading button and hide the submit button
         function showLoading() {
-            document.getElementById('submitButton').style.display = 'none'; // Hide submit button
-            document.getElementById('loadingButton').style.display = 'inline-block'; // Show loading button
+            document.getElementById('submitButton').style.display = 'none';
+            document.getElementById('loadingButton').style.display = 'inline-block';
             document.getElementById('timer').style.display = 'inline-block';
 
-            startTime = Date.now();
-            timerInterval = setInterval(updateTimer, 1000);
-            function updateTimer() {
+            const startTime = Date.now();
+            const timerInterval = setInterval(() => {
                 const currentTime = Date.now();
-                const elapsedTime = Math.floor((currentTime - startTime) / 1000); // Convert to seconds
+                const elapsedTime = Math.floor((currentTime - startTime) / 1000);
                 document.getElementById('timeElapsed').textContent = elapsedTime;
+            }, 1000);
+        }
+
+        function showSearchDetails(searchId) {
+            const detailsElement = document.getElementById(`details-${searchId}`);
+            if (detailsElement.style.display === 'none') {
+                detailsElement.style.display = 'block';
+            } else {
+                detailsElement.style.display = 'none';
             }
         }
     </script>
-   
 </body>
 </html>
