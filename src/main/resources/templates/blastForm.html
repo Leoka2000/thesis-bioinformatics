@@ -48,6 +48,35 @@
         </form>
 
 
+        <div class="history-table">
+            <h2 class="subtitle">History of Past BLAST Searches</h2>
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Sequence</th>
+                        <th>Hit ID</th>
+                        <th>Definition</th>
+                        <th >Accession</th>
+                        <th>Length</th>
+                        <th>Bit Score</th>
+                        <th>E-value</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="result : ${pastResults}">
+                        <td th:text="${result.sequence}"></td>
+                        <td th:text="${result.hitId}"></td>
+                        <td th:text="${result.hitDefinition}"></td>
+                        <td th:text="${result.hitAccession}"></td>
+                        <td th:text="${result.hitLength}"></td>
+                        <td th:text="${result.bitScore}"></td>
+                        <td th:text="${result.evalue}"></td>
+                        <td th:text="${result.timestamp}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script>

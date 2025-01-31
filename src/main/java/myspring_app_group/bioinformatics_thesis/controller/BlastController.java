@@ -53,7 +53,8 @@ public class BlastController {
             blastOutputInfo.put("queryDef", getElementValue(document.getDocumentElement(), "BlastOutput_query-def"));
             blastOutputInfo.put("queryLen", getElementValue(document.getDocumentElement(), "BlastOutput_query-len"));
 
-            Element parametersElement = (Element) document.getDocumentElement().getElementsByTagName("Parameters").item(0);
+            Element parametersElement = (Element) document.getDocumentElement().getElementsByTagName("Parameters")
+                    .item(0);
             if (parametersElement != null) {
                 blastOutputInfo.put("matrix", getElementValue(parametersElement, "Parameters_matrix"));
                 blastOutputInfo.put("expect", getElementValue(parametersElement, "Parameters_expect"));
@@ -78,6 +79,21 @@ public class BlastController {
                 result.setPositive(Integer.parseInt(hit.get("positive")));
                 result.setGaps(Integer.parseInt(hit.get("gaps")));
                 result.setTimestamp(new Date());
+
+                // Set the BLAST output information
+                result.setProgram(blastOutputInfo.get("program"));
+                result.setVersion(blastOutputInfo.get("version"));
+                result.setReference(blastOutputInfo.get("reference"));
+                result.setDb(blastOutputInfo.get("db"));
+                result.setQueryId(blastOutputInfo.get("queryId"));
+                result.setQueryDef(blastOutputInfo.get("queryDef"));
+                result.setQueryLen(blastOutputInfo.get("queryLen"));
+                result.setMatrix(blastOutputInfo.get("matrix"));
+                result.setExpect(blastOutputInfo.get("expect"));
+                result.setGapOpen(blastOutputInfo.get("gapOpen"));
+                result.setGapExtend(blastOutputInfo.get("gapExtend"));
+                result.setFilter(blastOutputInfo.get("filter"));
+
                 blastResultRepository.save(result);
             }
 

@@ -40,13 +40,18 @@
                 <div class="box">
                     <h2 class="subtitle">BLAST Output Information</h2>
                     <div class="content">
+                        <p><strong>Query Definition:</strong> <span th:text="${blastOutputInfo.queryDef}"></span></p>
                         <p><strong>Program:</strong> <span th:text="${blastOutputInfo.program}"></span></p>
                         <p><strong>Version:</strong> <span th:text="${blastOutputInfo.version}"></span></p>
                         <p><strong>Reference:</strong> <span th:text="${blastOutputInfo.reference}"></span></p>
                         <p><strong>Database:</strong> <span th:text="${blastOutputInfo.db}"></span></p>
                         <p><strong>Query ID:</strong> <span th:text="${blastOutputInfo.queryId}"></span></p>
-                        <p><strong>Query Definition:</strong> <span th:text="${blastOutputInfo.queryDef}"></span></p>
                         <p><strong>Query Length:</strong> <span th:text="${blastOutputInfo.queryLen}"></span></p>
+                        <p><strong>Matrix:</strong> <span th:text="${blastOutputInfo.matrix}"></span></p>
+                        <p><strong>Expect:</strong> <span th:text="${blastOutputInfo.expect}"></span></p>
+                        <p><strong>Gap Open:</strong> <span th:text="${blastOutputInfo.gapOpen}"></span></p>
+                        <p><strong>Gap Extend:</strong> <span th:text="${blastOutputInfo.gapExtend}"></span></p>
+                        <p><strong>Filter:</strong> <span th:text="${blastOutputInfo.filter}"></span></p>
                     </div>
                 </div>
 
