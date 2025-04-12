@@ -26,19 +26,24 @@ public class BlastController {
     @Autowired
     private BlastResultRepository blastResultRepository;
 
+    @GetMapping("/")
+    public String redirectToBlast() {
+        return "redirect:/blast";
+    }
+
     @GetMapping("/blast")
     public String blastForm(Model model) {
-        // Group results by timestamp (or search ID)
+
         List<BlastResult> allResults = blastResultRepository.findAll();
         Map<Date, List<BlastResult>> groupedResults = allResults.stream()
                 .collect(Collectors.groupingBy(BlastResult::getTimestamp));
 
-        // Convert to a list of searches
         List<Map<String, Object>> pastSearches = new ArrayList<>();
         for (Map.Entry<Date, List<BlastResult>> entry : groupedResults.entrySet()) {
             Map<String, Object> search = new HashMap<>();
             search.put("id", entry.getKey().getTime()); // Use timestamp as ID
-            search.put("sequence", entry.getValue().get(0).getSequence()); // All results in a search have the same sequence
+            search.put("sequence", entry.getValue().get(0).getSequence()); // All results in a search have the same
+                                                                           // sequence
             search.put("timestamp", entry.getKey());
             search.put("results", entry.getValue());
             pastSearches.add(search);
