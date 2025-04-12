@@ -3,20 +3,21 @@
 <head>
     <title>BLAST Search</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
         /* Custom styles for the form container */
         .container {
-            max-width: 200px; 
+            max-width: 800px; 
             margin: 50px auto;
             padding: 20px;
-           
         }
         .title {
             text-align: center;
             margin-bottom: 30px;
         }
         .history-table {
-            margin-top: 40px;
+            margin-top: 15rem;
+            
         }
         .fade {
             background-image: linear-gradient(
@@ -37,7 +38,18 @@
             margin-top: 20px;
             display: none;
         }
-      
+        .dropdown-menu {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .sequence-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .sequence-container .dropdown {
+            flex-grow: 1;
+        }
     </style>
 </head>
 <body>
@@ -48,7 +60,36 @@
         <form id="blastForm" action="/blast" method="post" onsubmit="showLoading()">
             <div class="field">
                 <label class="label" for="sequence">Enter Sequence:</label>
-                <div class="control">
+                <div  class="sequence-container">
+                    <div  class="dropdown" style="box-siz;">
+                        <div class="dropdown-trigger">
+                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" type="button">
+                                <span>Select Example</span>
+                                <span class="icon is-small">
+                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu" style=" box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; padding-bottom: 1rem;" id="dropdown-menu" role="menu">
+                            <div class="dropdown-content">
+                                <h3 class="dropdown-item has-text-weight-bold">Hydrolases</h3>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_417482.1')">NP_417482.1 - E. coli β-lactamase</a>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_387364.1')">NP_387364.1 - B. subtilis subtilisin</a>
+                                
+                                <h3 class="dropdown-item has-text-weight-bold">Transferases</h3>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_415911.1')">NP_415911.1 - E. coli aminoglycoside phosphotransferase</a>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_249225.1')">NP_249225.1 - P. aeruginosa glutathione S-transferase</a>
+                                
+                                <h3 class="dropdown-item has-text-weight-bold">Oxidoreductases</h3>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_286006.1')">NP_286006.1 - S. cerevisiae alcohol dehydrogenase</a>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_215570.1')">NP_215570.1 - M. tuberculosis catalase-peroxidase</a>
+                                
+                                <h3 class="dropdown-item mb-3 has-text-weight-bold">Lipases</h3>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_388908.1')">NP_388908.1 - B. subtilis lipase</a>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_414986.1')">NP_414986.1 - P. aeruginosa lipase</a>
+                            </div>
+                        </div>
+                    </div>
                     <input class="input is-dark is-primary" type="text" id="sequence" name="sequence" placeholder="e.g., NP_594959.1" required />
                 </div>
             </div>
@@ -56,15 +97,15 @@
                 <div class="control">
                     <button id="submitButton" class="button is-dark is-primary" type="submit">Submit</button>
                     <button id="loadingButton" class="button is-primary is-dark is-loading" type="button" style="display: none;">Loading</button>
-                    <span id="timer" class="timer" style="display: none;">Time since submission: <span id="timeElapsed">0</span>s</span>
+                    <span id="timer" class="timer" style="display: none; margin-top: 0.5rem;">Time since submission: <span id="timeElapsed">0</span>s</span>
                 </div>
             </div>
         </form>
 
-        <div class="history-table">
+        <div class="history-table" style="margin-top:18rem;">
             <h2 class="subtitle">History of Past BLAST Searches</h2>
             <div th:each="search : ${pastSearches}">
-                <div style="cursor: pointer;"  class="box" th:onclick="|showSearchDetails('${search.id}')|">
+                <div style="cursor: pointer;" class="box" th:onclick="|showSearchDetails('${search.id}')|">
                     <strong>Search ID:</strong> <span th:text="${search.id}"></span><br>
                     <strong>Sequence:</strong> <span th:text="${search.sequence}"></span><br>
                     <strong>Timestamp:</strong> <span th:text="${search.timestamp}"></span>
@@ -119,6 +160,22 @@
                 detailsElement.style.display = 'none';
             }
         }
+
+        function setSequence(sequence) {
+            document.getElementById('sequence').value = sequence;
+            // Close the dropdown
+            document.querySelector('.dropdown').classList.remove('is-active');
+        }
+
+        // Initialize dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            var dropdowns = document.querySelectorAll('.dropdown-trigger');
+            dropdowns.forEach(function(dropdown) {
+                dropdown.addEventListener('click', function() {
+                    this.parentNode.classList.toggle('is-active');
+                });
+            });
+        });
     </script>
 </body>
 </html>

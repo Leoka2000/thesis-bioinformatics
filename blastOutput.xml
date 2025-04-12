@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd">
+<BlastOutput>
+  <BlastOutput_program>blastp</BlastOutput_program>
+  <BlastOutput_version>BLASTP 2.16.1+</BlastOutput_version>
+  <BlastOutput_reference>Stephen F. Altschul, Thomas L. Madden, Alejandro A. Sch&amp;auml;ffer, Jinghui Zhang, Zheng Zhang, Webb Miller, and David J. Lipman (1997), &quot;Gapped BLAST and PSI-BLAST: a new generation of protein database search programs&quot;, Nucleic Acids Res. 25:3389-3402.</BlastOutput_reference>
+  <BlastOutput_db>swissprot</BlastOutput_db>
+  <BlastOutput_query-ID>NP_417482.1</BlastOutput_query-ID>
+  <BlastOutput_query-def>DedA family protein YghB [Escherichia coli str. K-12 substr. MG1655]</BlastOutput_query-def>
+  <BlastOutput_query-len>219</BlastOutput_query-len>
+  <BlastOutput_param>
+    <Parameters>
+      <Parameters_matrix>BLOSUM62</Parameters_matrix>
+      <Parameters_expect>10</Parameters_expect>
+      <Parameters_gap-open>11</Parameters_gap-open>
+      <Parameters_gap-extend>1</Parameters_gap-extend>
+      <Parameters_filter>F</Parameters_filter>
+    </Parameters>
+  </BlastOutput_param>
+<BlastOutput_iterations>
+<Iteration>
+  <Iteration_iter-num>1</Iteration_iter-num>
+  <Iteration_query-ID>NP_417482.1</Iteration_query-ID>
+  <Iteration_query-def>DedA family protein YghB [Escherichia coli str. K-12 substr. MG1655]</Iteration_query-def>
+  <Iteration_query-len>219</Iteration_query-len>
+<Iteration_hits>
+<Hit>
+  <Hit_num>1</Hit_num>
+  <Hit_id>sp|P0AA60.1|</Hit_id>
+  <Hit_def>RecName: Full=Inner membrane protein YghB [Escherichia coli K-12] &gt;sp|P0AA61.1| RecName: Full=Inner membrane protein YghB [Escherichia coli CFT073] &gt;sp|P0AA62.1| RecName: Full=Inner membrane protein YghB [Escherichia coli O157:H7]</Hit_def>
+  <Hit_accession>P0AA60</Hit_accession>
+  <Hit_len>219</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>441.81</Hsp_bit-score>
+      <Hsp_score>1135</Hsp_score>
+      <Hsp_evalue>3.71469e-159</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>219</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>219</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>219</Hsp_identity>
+      <Hsp_positive>219</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>219</Hsp_align-len>
+      <Hsp_qseq>MAVIQDIIAALWQHDFAALADPHIVSVVYFVMFATLFLENGLLPASFLPGDSLLILAGALIAQGVMDFLPTIAILTAAASLGCWLSYIQGRWLGNTKTVKGWLAQLPAKYHQRATCMFDRHGLLALLAGRFLAFVRTLLPTMAGISGLPNRRFQFFNWLSGLLWVSVVTSFGYALSMIPFVKRHEDQVMTFLMILPIALLTAGLLGTLFVVIKKKYCNA</Hsp_qseq>
+      <Hsp_hseq>MAVIQDIIAALWQHDFAALADPHIVSVVYFVMFATLFLENGLLPASFLPGDSLLILAGALIAQGVMDFLPTIAILTAAASLGCWLSYIQGRWLGNTKTVKGWLAQLPAKYHQRATCMFDRHGLLALLAGRFLAFVRTLLPTMAGISGLPNRRFQFFNWLSGLLWVSVVTSFGYALSMIPFVKRHEDQVMTFLMILPIALLTAGLLGTLFVVIKKKYCNA</Hsp_hseq>
+      <Hsp_midline>MAVIQDIIAALWQHDFAALADPHIVSVVYFVMFATLFLENGLLPASFLPGDSLLILAGALIAQGVMDFLPTIAILTAAASLGCWLSYIQGRWLGNTKTVKGWLAQLPAKYHQRATCMFDRHGLLALLAGRFLAFVRTLLPTMAGISGLPNRRFQFFNWLSGLLWVSVVTSFGYALSMIPFVKRHEDQVMTFLMILPIALLTAGLLGTLFVVIKKKYCNA</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>2</Hit_num>
+  <Hit_id>sp|P0A1F4.1|</Hit_id>
+  <Hit_def>RecName: Full=Inner membrane protein YghB [Salmonella enterica subsp. enterica serovar Typhimurium str. LT2] &gt;sp|P0A1F5.1| RecName: Full=Inner membrane protein YghB [Salmonella enterica subsp. enterica serovar Typhi]</Hit_def>
+  <Hit_accession>P0A1F4</Hit_accession>
+  <Hit_len>219</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>403.675</Hsp_bit-score>
+      <Hsp_score>1036</Hsp_score>
+      <Hsp_evalue>4.66058e-144</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>219</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>219</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>207</Hsp_identity>
+      <Hsp_positive>213</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>219</Hsp_align-len>
+      <Hsp_qseq>MAVIQDIIAALWQHDFAALADPHIVSVVYFVMFATLFLENGLLPASFLPGDSLLILAGALIAQGVMDFLPTIAILTAAASLGCWLSYIQGRWLGNTKTVKGWLAQLPAKYHQRATCMFDRHGLLALLAGRFLAFVRTLLPTMAGISGLPNRRFQFFNWLSGLLWVSVVTSFGYALSMIPFVKRHEDQVMTFLMILPIALLTAGLLGTLFVVIKKKYCNA</Hsp_qseq>
+      <Hsp_hseq>MAVIQDIIAALWQHDFAALANPHVVSVVYFVMFATLFLENGLLPASFLPGDSLLLLAGALIAQDVMHFLPTIGILTAAASLGCWLSYIQGRWLGNTRTVKGWLAQLPAKYHQRATCMFDRHGLLALLAGRFLAFVRTLLPTMAGISGLSNRRFQFFNWLSGLLWVTVVTSFGYALSMIPFVKRHEDQVMTFLMILPVALLVAGLLGTLVVVIKKKYCNA</Hsp_hseq>
+      <Hsp_midline>MAVIQDIIAALWQHDFAALA+PH+VSVVYFVMFATLFLENGLLPASFLPGDSLL+LAGALIAQ VM FLPTI ILTAAASLGCWLSYIQGRWLGNT+TVKGWLAQLPAKYHQRATCMFDRHGLLALLAGRFLAFVRTLLPTMAGISGL NRRFQFFNWLSGLLWV+VVTSFGYALSMIPFVKRHEDQVMTFLMILP+ALL AGLLGTL VVIKKKYCNA</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>3</Hit_num>
+  <Hit_id>sp|P0AA63.1|</Hit_id>
+  <Hit_def>RecName: Full=Inner membrane protein YqjA [Escherichia coli K-12] &gt;sp|P0AA64.1| RecName: Full=Inner membrane protein YqjA [Escherichia coli CFT073] &gt;sp|P0AA65.1| RecName: Full=Inner membrane protein YqjA [Escherichia coli O157:H7] &gt;sp|P0AA66.1| RecName: Full=Inner membrane protein YqjA [Shigella flexneri]</Hit_def>
+  <Hit_accession>P0AA63</Hit_accession>
+  <Hit_len>220</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>265.774</Hsp_bit-score>
+      <Hsp_score>678</Hsp_score>
+      <Hsp_evalue>1.33676e-89</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>218</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>218</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>135</Hsp_identity>
+      <Hsp_positive>171</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>218</Hsp_align-len>
+      <Hsp_qseq>MAVIQDIIAALWQHDFAALADPHIVSVVYFVMFATLFLENGLLPASFLPGDSLLILAGALIAQGVMDFLPTIAILTAAASLGCWLSYIQGRWLGNTKTVKGWLAQLPAKYHQRATCMFDRHGLLALLAGRFLAFVRTLLPTMAGISGLPNRRFQFFNWLSGLLWVSVVTSFGYALSMIPFVKRHEDQVMTFLMILPIALLTAGLLGTLFVVIKKKYCN</Hsp_qseq>
+      <Hsp_hseq>MELLTQLLQALWAQDFETLANPSMIGMLYFVLFVILFLENGLLPAAFLPGDSLLVLVGVLIAKGAMGYPQTILLLTVAASLGCWVSYIQGRWLGNTRTVQNWLSHLPAHYHQRAHHLFHKHGLSALLIGRFIAFVRTLLPTIAGLSGLNNARFQFFNWMSGLLWVLILTTLGYMLGKTPVFLKYEDQLMSCLMLLPVVLLVFGLAGSLVVLWKKKYGN</Hsp_hseq>
+      <Hsp_midline>M ++  ++ ALW  DF  LA+P ++ ++YFV+F  LFLENGLLPA+FLPGDSLL+L G LIA+G M +  TI +LT AASLGCW+SYIQGRWLGNT+TV+ WL+ LPA YHQRA  +F +HGL ALL GRF+AFVRTLLPT+AG+SGL N RFQFFNW+SGLLWV ++T+ GY L   P   ++EDQ+M+ LM+LP+ LL  GL G+L V+ KKKY N</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>4</Hit_num>
+  <Hit_id>sp|O69601.1|</Hit_id>
+  <Hit_def>RecName: Full=Uncharacterized membrane protein ML0287 [Mycobacterium leprae TN]</Hit_def>
+  <Hit_accession>O69601</Hit_accession>
+  <Hit_len>222</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>80.8777</Hsp_bit-score>
+      <Hsp_score>198</Hsp_score>
+      <Hsp_evalue>1.70955e-17</Hsp_evalue>
+      <Hsp_query-from>36</Hsp_query-from>
+      <Hsp_query-to>202</Hsp_query-to>
+      <Hsp_hit-from>36</Hsp_hit-from>
+      <Hsp_hit-to>199</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>57</Hsp_identity>
+      <Hsp_positive>92</Hsp_positive>
+      <Hsp_gaps>9</Hsp_gaps>
+      <Hsp_align-len>170</Hsp_align-len>
+      <Hsp_qseq>LFLENGLLPASFLPGDSLLILAGALIAQGVMD---FLPTIAILTAAASLGCWLSYIQGRWLGNTKTVKGWLAQLPAKYHQRATCMFDRHGLLALLAGRFLAFVRTLLPTMAGISGLPNRRFQFFNWLSGLLWVSVVTSFGYALSMIPFVKRHEDQVMTFLMILPIALLTA</Hsp_qseq>
+      <Hsp_hseq>IFVETGLL-FPLLPGESLLFTGGLLATKGTIDIWVLSPSVAVV---AVLGDQIGYLIGRRIGPALFKKENSRFFKQHYVTESHAFFEKHGRWTIILARFLPFMRTFTPVIAGLSYMSYPLYLGFDIVGGILWGGGVTVAGYFLGNVPFVRQNLEKII--LGILFVSLLPA</Hsp_hseq>
+      <Hsp_midline>+F+E GLL    LPG+SLL   G L  +G +D     P++A++   A LG  + Y+ GR +G     K         Y   +   F++HG   ++  RFL F+RT  P +AG+S +    +  F+ + G+LW   VT  GY L  +PFV+++ ++++  L IL ++LL A</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>5</Hit_num>
+  <Hit_id>sp|P57239.1|</Hit_id>
+  <Hit_def>RecName: Full=Uncharacterized membrane protein BU139 [Buchnera aphidicola str. APS (Acyrthosiphon pisum)]</Hit_def>
+  <Hit_accession>P57239</Hit_accession>
+  <Hit_len>256</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>61.6178</Hsp_bit-score>
+      <Hsp_score>148</Hsp_score>
+      <Hsp_evalue>2.89811e-10</Hsp_evalue>
+      <Hsp_query-from>37</Hsp_query-from>
+      <Hsp_query-to>167</Hsp_query-to>
+      <Hsp_hit-from>25</Hsp_hit-from>
+      <Hsp_hit-to>154</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>42</Hsp_identity>
+      <Hsp_positive>62</Hsp_positive>
+      <Hsp_gaps>9</Hsp_gaps>
+      <Hsp_align-len>135</Hsp_align-len>
+      <Hsp_qseq>FLENGLLPASFLPGDSLLILAGALIAQGVMDFLPTIAILTAAASLGCWLSYIQG----RWLGNTKTVKGWLAQLPAKYHQRATCMFDRHGLLALLAGRFLAFVRTLLPTMAGISGLPNRRFQFFNWLSGLLWVSV</Hsp_qseq>
+      <Hsp_hseq>FLESLALVGLLLPGIILMTTLGTFIGDGKLSFYPAWISGTTGCLLGDWISYYIGLYFKNWLYNFNFLKK-----NQKLLDKTKSFLDKHSMLTIILGRFIGPTRPLIPMVSGMLKLPLKKFVFPSIIGCILWPPV</Hsp_hseq>
+      <Hsp_midline>FLE+  L    LPG  L+   G  I  G + F P     T    LG W+SY  G     WL N   +K        K   +     D+H +L ++ GRF+   R L+P ++G+  LP ++F F + +  +LW  V</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>6</Hit_num>
+  <Hit_id>sp|Q8KA02.1|</Hit_id>
+  <Hit_def>RecName: Full=Uncharacterized membrane protein BUsg_132 [Buchnera aphidicola str. Sg (Schizaphis graminum)]</Hit_def>
+  <Hit_accession>Q8KA02</Hit_accession>
+  <Hit_len>252</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>53.1434</Hsp_bit-score>
+      <Hsp_score>126</Hsp_score>
+      <Hsp_evalue>2.32595e-07</Hsp_evalue>
+      <Hsp_query-from>37</Hsp_query-from>
+      <Hsp_query-to>167</Hsp_query-to>
+      <Hsp_hit-from>25</Hsp_hit-from>
+      <Hsp_hit-to>154</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>62</Hsp_positive>
+      <Hsp_gaps>15</Hsp_gaps>
+      <Hsp_align-len>138</Hsp_align-len>
+      <Hsp_qseq>FLENGLLPASFLPGDSLLILAGALIAQGVMDFLPTIAILTAAASLGCWLSYIQGRWLGNTKTVKGWLAQLPAKYHQRATCMFDR-------HGLLALLAGRFLAFVRTLLPTMAGISGLPNRRFQFFNWLSGLLWVSV</Hsp_qseq>
+      <Hsp_hseq>FLESLALVGLLLPGIVFMATLGTFIGNGKLPFYPSWIAGIIGCLLGDWCSYFIGLYFKN------WLYSL--KFLKKNCHLLDKTKSLLHKHSMITILVGRFIGPTRPLIPMVSGMLKLPLKKFILPSLLGCILWPPI</Hsp_hseq>
+      <Hsp_midline>FLE+  L    LPG   +   G  I  G + F P+         LG W SY  G +  N      WL  L  K+ ++   + D+       H ++ +L GRF+   R L+P ++G+  LP ++F   + L  +LW  +</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>7</Hit_num>
+  <Hit_id>sp|P33366.1|</Hit_id>
+  <Hit_def>RecName: Full=Inner membrane protein YohD [Escherichia coli K-12]</Hit_def>
+  <Hit_accession>P33366</Hit_accession>
+  <Hit_len>192</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>51.2174</Hsp_bit-score>
+      <Hsp_score>121</Hsp_score>
+      <Hsp_evalue>6.60331e-07</Hsp_evalue>
+      <Hsp_query-from>42</Hsp_query-from>
+      <Hsp_query-to>174</Hsp_query-to>
+      <Hsp_hit-from>15</Hsp_hit-from>
+      <Hsp_hit-to>144</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>38</Hsp_identity>
+      <Hsp_positive>63</Hsp_positive>
+      <Hsp_gaps>9</Hsp_gaps>
+      <Hsp_align-len>136</Hsp_align-len>
+      <Hsp_qseq>LLPASFLPGDSLLILAGALIAQGVMDFLPTIAILTAAASLGCWLSYIQGRWLGNTKTVKGWLAQLPAKYH---QRATCMFDRHGLLALLAGRFLAFVRTLLPTMAGISGLPNRRFQFFNWLSGLLWVSVVTSFGYA</Hsp_qseq>
+      <Hsp_hseq>LVIGSLAEGETVTLLGGVAAHQGLLKFPLVVLSVALGGMIGDQVLYLCGRRFG------GKLLRRFSKHQDKIERAQKLIQRHPYLFVIGTRFMYGFRVIGPTLIGASQLPPKIFLPLNILGAFAWALIFTTIGYA</Hsp_hseq>
+      <Hsp_midline>L+  S   G+++ +L G    QG++ F   +  +     +G  + Y+ GR  G      G L +  +K+    +RA  +  RH  L ++  RF+   R + PT+ G S LP + F   N L    W  + T+ GYA</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>8</Hit_num>
+  <Hit_id>sp|Q89AV4.1|</Hit_id>
+  <Hit_def>RecName: Full=Uncharacterized membrane protein bbp_130 [Buchnera aphidicola str. Bp (Baizongia pistaciae)]</Hit_def>
+  <Hit_accession>Q89AV4</Hit_accession>
+  <Hit_len>257</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>48.9062</Hsp_bit-score>
+      <Hsp_score>115</Hsp_score>
+      <Hsp_evalue>6.36144e-06</Hsp_evalue>
+      <Hsp_query-from>25</Hsp_query-from>
+      <Hsp_query-to>164</Hsp_query-to>
+      <Hsp_hit-from>13</Hsp_hit-from>
+      <Hsp_hit-to>151</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>62</Hsp_positive>
+      <Hsp_gaps>9</Hsp_gaps>
+      <Hsp_align-len>144</Hsp_align-len>
+      <Hsp_qseq>VSVVYFVMFATLFLENGLLPASFLPGDSLLILAGALIAQGVMDFLPTIAILTAAASLGCWLSYIQG----RWLGNTKTVKGWLAQLPAKYHQRATCMFDRHGLLALLAGRFLAFVRTLLPTMAGISGLPNRRFQFFNWLSGLLW</Hsp_qseq>
+      <Hsp_hseq>ISYALFMVLIVTFLESLALVGLFLPGIVLMSILGTLIGNGTLSFYPAWIVGIIGCMCGDWISYYCGFKFKKCITNLHLLKNNNVVL-----DKITNTLTNYPITTILLGRFIGPTRPLVPMVCGMLNISLKTFIIPNILGCILW</Hsp_hseq>
+      <Hsp_midline>+S   F++    FLE+  L   FLPG  L+ + G LI  G + F P   +       G W+SY  G    + + N   +K     L      + T     + +  +L GRF+   R L+P + G+  +  + F   N L  +LW</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>9</Hit_num>
+  <Hit_id>sp|O34908.1|</Hit_id>
+  <Hit_def>RecName: Full=Uncharacterized membrane protein YkoX [Bacillus subtilis subsp. subtilis str. 168]</Hit_def>
+  <Hit_accession>O34908</Hit_accession>
+  <Hit_len>221</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>38.5058</Hsp_bit-score>
+      <Hsp_score>88</Hsp_score>
+      <Hsp_evalue>0.0203572</Hsp_evalue>
+      <Hsp_query-from>26</Hsp_query-from>
+      <Hsp_query-to>148</Hsp_query-to>
+      <Hsp_hit-from>26</Hsp_hit-from>
+      <Hsp_hit-to>142</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>36</Hsp_identity>
+      <Hsp_positive>59</Hsp_positive>
+      <Hsp_gaps>18</Hsp_gaps>
+      <Hsp_align-len>129</Hsp_align-len>
+      <Hsp_qseq>SVVYFVMFATLFLENGLLPASFLPGDSLLILAGALIAQGVMDFLPTIAILTAAASLGCWLSYIQGRWLGNT------KTVKGWLAQLPAKYHQRATCMFDRHGLLALLAGRFLAFVRTLLPTMAGISGL</Hsp_qseq>
+      <Hsp_hseq>SLSYFGIFLALSIE-------FIPAEVVLPLAGYWVSKGDM----TLAGVVLAGSLGGVAGPLTLYWIGRYGGRPFLERFGKYLFIKPEAL-DKSDNFFKKHGGFVAFSGRFLPGIRTLISIPCGIAKM</Hsp_hseq>
+      <Hsp_midline>S+ YF +F  L +E       F+P + +L LAG  +++G M    T+A +  A SLG     +   W+G        +    +L   P     ++   F +HG     +GRFL  +RTL+    GI+ +</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>10</Hit_num>
+  <Hit_id>sp|P31570.1|</Hit_id>
+  <Hit_def>RecName: Full=Corrinoid adenosyltransferase CobA; AltName: Full=Cob(II)alamin adenosyltransferase; AltName: Full=Cob(II)yrinic acid a,c-diamide adenosyltransferase; AltName: Full=Cobinamide/cobalamin adenosyltransferase [Salmonella enterica subsp. enterica serovar Typhimurium str. LT2]</Hit_def>
+  <Hit_accession>P31570</Hit_accession>
+  <Hit_len>196</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>34.2686</Hsp_bit-score>
+      <Hsp_score>77</Hsp_score>
+      <Hsp_evalue>0.516121</Hsp_evalue>
+      <Hsp_query-from>10</Hsp_query-from>
+      <Hsp_query-to>75</Hsp_query-to>
+      <Hsp_hit-from>107</Hsp_hit-from>
+      <Hsp_hit-to>177</Hsp_hit-to>
+      <Hsp_query-frame>0</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>22</Hsp_identity>
+      <Hsp_positive>34</Hsp_positive>
+      <Hsp_gaps>5</Hsp_gaps>
+      <Hsp_align-len>71</Hsp_align-len>
+      <Hsp_qseq>ALWQHDFAALADPHIVSVV-----YFVMFATLFLENGLLPASFLPGDSLLILAGALIAQGVMDFLPTIAIL</Hsp_qseq>
+      <Hsp_hseq>AVWQHGKRMLADPLLDMVVLDELTYMVAYDYLPLEEVISALNARPGHQTVIITGRGCHRDILDLADTVSEL</Hsp_hseq>
+      <Hsp_midline>A+WQH    LADP +  VV     Y V +  L LE  +   +  PG   +I+ G    + ++D   T++ L</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>484469</Statistics_db-num>
+      <Statistics_db-len>184434521</Statistics_db-len>
+      <Statistics_hsp-len>0</Statistics_hsp-len>
+      <Statistics_eff-space>0</Statistics_eff-space>
+      <Statistics_kappa>0.041</Statistics_kappa>
+      <Statistics_lambda>0.267</Statistics_lambda>
+      <Statistics_entropy>0.14</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+</Iteration>
+</BlastOutput_iterations>
+</BlastOutput>
