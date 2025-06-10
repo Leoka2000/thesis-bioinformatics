@@ -205,6 +205,7 @@ This project requires the following dependencies:
 
 - **Programming Language:** Java
 - **Package Manager:** Maven
+- **Java Dependencies:** Please se file pom.xml at the root folder
 
 ### Installation
 
@@ -226,7 +227,7 @@ Build thesis-bioinformatics from the source and intsall dependencies:
 
 <!-- SHIELDS BADGE CURRENTLY DISABLED -->
 	<!-- [![maven][maven-shield]][maven-link] -->
-	<!-- REFERENCE LINKS -->
+	
 	<!-- [maven-shield]: https://img.shields.io/badge/Maven-C71A36.svg?style={badge_style}&logo=apache-maven&logoColor=white -->
 	<!-- [maven-link]: https://maven.apache.org/ -->
 
@@ -256,13 +257,7 @@ mvn test
 
 ---
 
-## Roadmap
 
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
-
----
 
 ## Contributing
 
