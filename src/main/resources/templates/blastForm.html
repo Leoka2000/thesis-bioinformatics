@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        /* Custom styles for the form container */
         .container {
             max-width: 800px; 
             margin: 50px auto;
@@ -16,23 +15,14 @@
             margin-bottom: 30px;
         }
         .history-table {
-            margin-top: 15rem;
-            
+            margin-top: 18rem;
         }
         .fade {
-            background-image: linear-gradient(
-                180deg, 
-                rgba(15, 219, 128, 0.3), 
-                rgba(11, 189, 108, 0.2), 
-                rgba(8, 159, 88, 0.1), 
-                rgba(6, 127, 68, 0.05), 
-                rgba(4, 95, 48, 0.001), 
-                rgba(0, 0, 0, 0) /* Fully transparent */
-              );
-              height: 20rem;
-              width: 100%;
-              position: absolute;
-              top: 0;
+            background-image: linear-gradient(180deg, rgba(15, 219, 128, 0.3), rgba(11, 189, 108, 0.2), rgba(8, 159, 88, 0.1), rgba(6, 127, 68, 0.05), rgba(4, 95, 48, 0.001), rgba(0, 0, 0, 0));
+            height: 20rem;
+            width: 100%;
+            position: absolute;
+            top: 0;
         }
         .search-details {
             margin-top: 20px;
@@ -54,14 +44,15 @@
 </head>
 <body>
     <div th:replace="fragments/navbar :: body"></div>
+    <div class="fade"></div>
 
     <div class="container">
         <h1 class="title">BLAST Search</h1>
-        <form id="blastForm" action="/blast" method="post" onsubmit="showLoading()">
+        <form id="blastForm" action="/blast" method="post">
             <div class="field">
                 <label class="label" for="sequence">Enter Sequence:</label>
-                <div  class="sequence-container">
-                    <div  class="dropdown" style="box-siz;">
+                <div class="sequence-container">
+                    <div class="dropdown">
                         <div class="dropdown-trigger">
                             <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" type="button">
                                 <span>Select Example</span>
@@ -70,20 +61,20 @@
                                 </span>
                             </button>
                         </div>
-                        <div class="dropdown-menu box" style=" box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; padding-bottom: 1remx;" id="dropdown-menu" role="menu">
+                        <div class="dropdown-menu box" id="dropdown-menu" role="menu">
                             <div class="dropdown-content">
                                 <h3 class="dropdown-item has-text-weight-bold">Hydrolases</h3>
                                 <a href="#" class="dropdown-item" onclick="setSequence('NP_417482.1')">NP_417482.1 - E. coli β-lactamase</a>
                                 <a href="#" class="dropdown-item" onclick="setSequence('NP_387364.1')">NP_387364.1 - B. subtilis subtilisin</a>
-                                
+
                                 <h3 class="dropdown-item has-text-weight-bold">Transferases</h3>
                                 <a href="#" class="dropdown-item" onclick="setSequence('NP_415911.1')">NP_415911.1 - E. coli aminoglycoside phosphotransferase</a>
                                 <a href="#" class="dropdown-item" onclick="setSequence('NP_249225.1')">NP_249225.1 - P. aeruginosa glutathione S-transferase</a>
-                                
+
                                 <h3 class="dropdown-item has-text-weight-bold">Oxidoreductases</h3>
                                 <a href="#" class="dropdown-item" onclick="setSequence('NP_286006.1')">NP_286006.1 - S. cerevisiae alcohol dehydrogenase</a>
                                 <a href="#" class="dropdown-item" onclick="setSequence('NP_215570.1')">NP_215570.1 - M. tuberculosis catalase-peroxidase</a>
-                                
+
                                 <h3 class="dropdown-item mb-3 has-text-weight-bold">Lipases</h3>
                                 <a href="#" class="dropdown-item" onclick="setSequence('NP_388908.1')">NP_388908.1 - B. subtilis lipase</a>
                                 <a href="#" class="dropdown-item" onclick="setSequence('NP_414986.1')">NP_414986.1 - P. aeruginosa lipase</a>
@@ -93,16 +84,19 @@
                     <input class="input is-dark is-primary" type="text" id="sequence" name="sequence" placeholder="e.g., NP_594959.1" required />
                 </div>
             </div>
+
             <div class="field">
                 <div class="control">
                     <button id="submitButton" class="button is-dark is-primary" type="submit">Submit</button>
                     <button id="loadingButton" class="button is-primary is-dark is-loading" type="button" style="display: none;">Loading</button>
-                    <span id="timer" class="timer" style="display: none; margin: 1rem .5rem;">Time since submission: <span id="timeElapsed">0</span>s - BLAST queries are data heavy, therefore this will a little</span> 
+                    <span id="timer" class="timer" style="display: none; margin: 1rem 0.5rem;">
+                        Time since submission: <span id="timeElapsed">0</span>s - BLAST queries are data heavy, therefore this will take a little
+                    </span> 
                 </div>
             </div>
         </form>
 
-        <div class="history-table" style="margin-top:18rem;">
+        <div class="history-table">
             <h2 class="subtitle">History of Past BLAST Searches</h2>
             <div th:each="search : ${pastSearches}">
                 <div style="cursor: pointer;" class="box" th:onclick="|showSearchDetails('${search.id}')|">
@@ -139,57 +133,49 @@
     </div>
 
     <script>
-        function showLoading() {
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+                trigger.addEventListener('click', function () {
+                    this.parentNode.classList.toggle('is-active');
+                });
+            });
+        });
+
+        function setSequence(sequence) {
+            document.getElementById('sequence').value = sequence;
+            document.querySelector('.dropdown').classList.remove('is-active');
+        }
+
+        function showSearchDetails(searchId) {
+            const details = document.getElementById(`details-${searchId}`);
+            details.style.display = details.style.display === 'none' ? 'block' : 'none';
+        }
+
+        document.getElementById('blastForm').addEventListener('submit', function (event) {
+            const inputField = document.getElementById('sequence');
+            const value = inputField.value.trim();
+            const refSeqPattern = /^[A-Z]{2}_[0-9]{6,}\.[0-9]+$/;
+
+            if (!refSeqPattern.test(value)) {
+                event.preventDefault();
+                alert('Input must be in RefSeq format, e.g., NP_594959.1');
+                inputField.value = '';
+                inputField.focus();
+                return;
+            }
+
+            // Valid input, proceed to show loading UI
             document.getElementById('submitButton').style.display = 'none';
             document.getElementById('loadingButton').style.display = 'inline-block';
             document.getElementById('timer').style.display = 'inline-block';
 
             const startTime = Date.now();
-            const timerInterval = setInterval(() => {
+            setInterval(() => {
                 const currentTime = Date.now();
-                const elapsedTime = Math.floor((currentTime - startTime) / 1000);
-                document.getElementById('timeElapsed').textContent = elapsedTime;
+                const elapsed = Math.floor((currentTime - startTime) / 1000);
+                document.getElementById('timeElapsed').textContent = elapsed;
             }, 1000);
-        }
-
-        function showSearchDetails(searchId) {
-            const detailsElement = document.getElementById(`details-${searchId}`);
-            if (detailsElement.style.display === 'none') {
-                detailsElement.style.display = 'block';
-            } else {
-                detailsElement.style.display = 'none';
-            }
-        }
-
-        function setSequence(sequence) {
-            document.getElementById('sequence').value = sequence;
-            // Close the dropdown
-            document.querySelector('.dropdown').classList.remove('is-active');
-        }
-
-        // Initialize dropdown functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            var dropdowns = document.querySelectorAll('.dropdown-trigger');
-            dropdowns.forEach(function(dropdown) {
-                dropdown.addEventListener('click', function() {
-                    this.parentNode.classList.toggle('is-active');
-                });
-            });
         });
     </script>
-     <script>
-    document.getElementById('blastForm').addEventListener('submit', function(event) {
-        const inputField = document.getElementById('sequence');
-        const value = inputField.value.trim();
-        const refSeqPattern = /^[A-Z]{2}_[0-9]{6,}\.[0-9]+$/;
-
-        if (!refSeqPattern.test(value)) {
-            event.preventDefault(); // Prevent form submission
-            alert('Input must be in RefSeq format, e.g., NP_594959.1');
-            inputField.value = ''; // Clear the input
-            inputField.focus();    // Focus back on the input field
-        }
-    });
-</script>
 </body>
 </html>
