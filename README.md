@@ -304,7 +304,7 @@ Thesis-bioinformatics is protected under the [LICENSE](https://choosealicense.co
 
 ## Acknowledgments
 
-- Credit `contributors`, `inspiration`, `references`, etc.
+- Credit `My supervisor Ág Norbert`, `The BioJava team`, etc.
 
 <div align="right">
 
