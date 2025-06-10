@@ -177,5 +177,19 @@
             });
         });
     </script>
+     <script>
+    document.getElementById('blastForm').addEventListener('submit', function(event) {
+        const inputField = document.getElementById('sequence');
+        const value = inputField.value.trim();
+        const refSeqPattern = /^[A-Z]{2}_[0-9]{6,}\.[0-9]+$/;
+
+        if (!refSeqPattern.test(value)) {
+            event.preventDefault(); // Prevent form submission
+            alert('Input must be in RefSeq format, e.g., NP_594959.1');
+            inputField.value = ''; // Clear the input
+            inputField.focus();    // Focus back on the input field
+        }
+    });
+</script>
 </body>
 </html>
