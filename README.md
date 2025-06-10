@@ -26,7 +26,6 @@
 
 - [Table of Contents](#table-of-contents)
 - [Overview](#overview)
-- [Features](#features)
 - [Project Structure](#project-structure)
     - [Project Index](#project-index)
 - [Getting Started](#getting-started)
@@ -47,11 +46,6 @@
 
 ---
 
-## Features
-
-<code>❯ REPLACE-ME</code>
-
----
 
 ## Project Structure
 
