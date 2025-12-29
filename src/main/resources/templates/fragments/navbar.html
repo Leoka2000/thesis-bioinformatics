@@ -1,0 +1,74 @@
+<!-- src/main/resources/templates/fragments/navbar.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <style>
+      .logoImg {
+        filter: invert(100%) sepia(1%) saturate(1%) hue-rotate(0) brightness(1209%) contrast(300%);
+        height: 42px;
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const themeToggleButton = document.getElementById('themeToggle')
+        const htmlElement = document.documentElement
+        const logoImg = document.querySelector('.logoImg')
+      
+        themeToggleButton.addEventListener('click', function () {
+          // Toggle theme on the <html> element
+          if (htmlElement.classList.contains('theme-dark')) {
+            htmlElement.classList.remove('theme-dark')
+            htmlElement.classList.add('theme-light')
+            themeToggleButton.textContent = '☀️'
+            logoImg.classList.remove('logoImg')
+          } else {
+            htmlElement.classList.remove('theme-light')
+            htmlElement.classList.add('theme-dark')
+            themeToggleButton.textContent = '🌙'
+            logoImg.classList.add('logoImg')
+          }
+      
+          // Update all elements with the "is-dark" class
+          document.querySelectorAll('.is-dark').forEach((element) => {
+            element.classList.remove('is-dark')
+            element.classList.add('is-light')
+          })
+      
+          // If switching back to dark, revert "is-light" back to "is-dark"
+          if (htmlElement.classList.contains('theme-dark')) {
+            document.querySelectorAll('.is-light').forEach((element) => {
+              element.classList.remove('is-light')
+              element.classList.add('is-dark')
+            })
+          }
+        })
+      })
+    </script>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" target="_blank" href="https://leoreusportfolio.netlify.app/"><img src="logo.png" alt="App Logo" width="50" class="logoImg" /></a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">Home</a>
+          <a class="navbar-item">Documentation</a>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <button id="themeToggle" class="button has-shadow is-size-5">🌙</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

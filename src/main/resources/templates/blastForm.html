@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="theme-dark" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>BLAST Search</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        .container {
+            max-width: 800px; 
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .history-table {
+            margin-top: 18rem;
+        }
+        .fade {
+            background-image: linear-gradient(180deg, rgba(15, 219, 128, 0.3), rgba(11, 189, 108, 0.2), rgba(8, 159, 88, 0.1), rgba(6, 127, 68, 0.05), rgba(4, 95, 48, 0.001), rgba(0, 0, 0, 0));
+            height: 20rem;
+            width: 100%;
+            position: absolute;
+            top: 0;
+        }
+        .search-details {
+            margin-top: 20px;
+            display: none;
+        }
+        .dropdown-menu {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .sequence-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .sequence-container .dropdown {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="fragments/navbar :: body"></div>
+    <div class="fade"></div>
+
+    <div class="container">
+        <h1 class="title">BLAST Search</h1>
+        <form id="blastForm" action="/blast" method="post">
+            <div class="field">
+                <label class="label" for="sequence">Enter Sequence:</label>
+                <div class="sequence-container">
+                    <div class="dropdown">
+                        <div class="dropdown-trigger">
+                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" type="button">
+                                <span>Select Example</span>
+                                <span class="icon is-small">
+                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu box" id="dropdown-menu" role="menu">
+                            <div class="dropdown-content">
+                                <h3 class="dropdown-item has-text-weight-bold">Hydrolases</h3>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_417482.1')">NP_417482.1 - E. coli β-lactamase</a>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_387364.1')">NP_387364.1 - B. subtilis subtilisin</a>
+
+                                <h3 class="dropdown-item has-text-weight-bold">Transferases</h3>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_415911.1')">NP_415911.1 - E. coli aminoglycoside phosphotransferase</a>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_249225.1')">NP_249225.1 - P. aeruginosa glutathione S-transferase</a>
+
+                                <h3 class="dropdown-item has-text-weight-bold">Oxidoreductases</h3>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_286006.1')">NP_286006.1 - S. cerevisiae alcohol dehydrogenase</a>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_215570.1')">NP_215570.1 - M. tuberculosis catalase-peroxidase</a>
+
+                                <h3 class="dropdown-item mb-3 has-text-weight-bold">Lipases</h3>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_388908.1')">NP_388908.1 - B. subtilis lipase</a>
+                                <a href="#" class="dropdown-item" onclick="setSequence('NP_414986.1')">NP_414986.1 - P. aeruginosa lipase</a>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="input is-dark is-primary" type="text" id="sequence" name="sequence" placeholder="e.g., NP_594959.1" required />
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <button id="submitButton" class="button is-dark is-primary" type="submit">Submit</button>
+                    <button id="loadingButton" class="button is-primary is-dark is-loading" type="button" style="display: none;">Loading</button>
+                    <span id="timer" class="timer" style="display: none; margin: 1rem 0.5rem;">
+                        Time since submission: <span id="timeElapsed">0</span>s - BLAST queries are data heavy, therefore this will take a little
+                    </span> 
+                </div>
+            </div>
+        </form>
+
+        <div class="history-table">
+            <h2 class="subtitle">History of Past BLAST Searches</h2>
+            <div th:each="search : ${pastSearches}">
+                <div style="cursor: pointer;" class="box" th:onclick="|showSearchDetails('${search.id}')|">
+                    <strong>Search ID:</strong> <span th:text="${search.id}"></span><br>
+                    <strong>Sequence:</strong> <span th:text="${search.sequence}"></span><br>
+                    <strong>Timestamp:</strong> <span th:text="${search.timestamp}"></span>
+                </div>
+                <div class="search-details" th:id="|details-${search.id}|">
+                    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th>Hit ID</th>
+                                <th>Definition</th>
+                                <th>Accession</th>
+                                <th>Length</th>
+                                <th>Bit Score</th>
+                                <th>E-value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="result : ${search.results}">
+                                <td th:text="${result.hitId}"></td>
+                                <td th:text="${result.hitDefinition}"></td>
+                                <td th:text="${result.hitAccession}"></td>
+                                <td th:text="${result.hitLength}"></td>
+                                <td th:text="${result.bitScore}"></td>
+                                <td th:text="${result.evalue}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+                trigger.addEventListener('click', function () {
+                    this.parentNode.classList.toggle('is-active');
+                });
+            });
+        });
+
+        function setSequence(sequence) {
+            document.getElementById('sequence').value = sequence;
+            document.querySelector('.dropdown').classList.remove('is-active');
+        }
+
+        function showSearchDetails(searchId) {
+            const details = document.getElementById(`details-${searchId}`);
+            details.style.display = details.style.display === 'none' ? 'block' : 'none';
+        }
+
+        document.getElementById('blastForm').addEventListener('submit', function (event) {
+            const inputField = document.getElementById('sequence');
+            const value = inputField.value.trim();
+            const refSeqPattern = /^[A-Z]{2}_[0-9]{6,}\.[0-9]+$/;
+
+            if (!refSeqPattern.test(value)) {
+                event.preventDefault();
+                alert('Input must be in RefSeq format, e.g., NP_594959.1');
+                inputField.value = '';
+                inputField.focus();
+                return;
+            }
+
+            // Valid input, proceed to show loading UI
+            document.getElementById('submitButton').style.display = 'none';
+            document.getElementById('loadingButton').style.display = 'inline-block';
+            document.getElementById('timer').style.display = 'inline-block';
+
+            const startTime = Date.now();
+            setInterval(() => {
+                const currentTime = Date.now();
+                const elapsed = Math.floor((currentTime - startTime) / 1000);
+                document.getElementById('timeElapsed').textContent = elapsed;
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
